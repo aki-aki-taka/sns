@@ -1,0 +1,29 @@
+{% extends 'base/top.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+{% block content %}
+<div class="bg-secondary">
+  <ul class="column">
+  {% for category in category_list %}
+  <li><a class="text-white" href="{% url 'base:category' category %}">
+    {{ category }}
+    </a></li>
+  {% endfor %}
+  </ul>
+</div>
+<div>
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col">
+   {% for item in object_list %}
+   <div class="card mb-3">
+     <div class="card-body">
+     <h5 class="card-title">タイトル：<a href="{% url 'base:detail' item.pk %}">{{item.title}}</a></h5>
+     <p class=card-text>カテゴリー:{{item.category}}</p>
+      <p class=card-text>投稿者：{{item.user.username}}</p>
+        </div>
+        </div>
+   {% endfor %}
+</div>
+</div>
+</div>
+{% endblock content %}

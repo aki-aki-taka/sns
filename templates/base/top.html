@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <meta http-equiv="content-language" content="ja">
+    <title>Scientia</title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<header>
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+ <div class="container-fluid">
+<h1>Scientia</h1>
+<div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+             {% if user.is_authenticated %}
+             <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">ログアウト</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" href="{% url 'base:create' %}">投稿</a>
+             </li>
+             <li class="nav-item">
+              <a class="nav-link" href="{% url 'base:follow-list' %}">フォローリスト</a>
+             </li>
+             <li class="nav-item">
+              <a class="nav-link" href="{% url 'base:home' %}">記事一覧</a>
+             </li>
+             <li class="nav-item">
+              <a class="nav-link" href="{% url 'base:mypost' %}">Home</a>
+             </li>
+
+             {% else %}
+             <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">ログイン</a>
+             </li>
+             <li class="nav-item">
+              <a class="nav-link" href="{% url 'accounts:create' %}">ユーザー登録</a>
+             </li>
+             {% endif %}
+     </ul>
+   </div>
+  </div>
+</nav>
+</header>
+<body>
+{% block content %}
+{% endblock %}
+</body>
+</html>

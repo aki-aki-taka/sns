@@ -1,0 +1,24 @@
+{% extends 'base/top.html' %}
+{% load static %}
+
+...
+
+{% block content %}
+<div class="container">
+   <div class="">
+       <h2>{{object.title}}</h2>
+       <p>カテゴリー：{{object.category}}</p>
+       <p>投稿者：{{object.user}}</p>
+       <p>{{object.content|linebreaksbr}}</p>
+       {% if object.user in connection.0.following.all %}
+              <a href="{% url 'base:follow-detail' object.pk %}" class="btn btn-danger ms-3" tabindex="-1" role="button" aria-disabled="true">フォロー解除</a>
+              {% else %}
+              <a href="{% url 'base:follow-detail' object.pk %}" class="btn btn-primary ms-3" tabindex="-1" role="button" aria-disabled="true">フォローする</a>
+              {% endif %}
+       {% if object.user == request.user %}　
+     <a href="{% url 'base:delete' post.pk %}" class="btn btn-danger ms-3" tabindex="-1" role="button" aria-disabled="true">削除</a>
+     <a href="{% url 'base:update' post.pk %}" class="btn btn-primary ms-3" tabindex="-1" role="button" aria-disabled="true">編集</a>
+     {% endif %}
+   </div>
+</div>
+{% endblock content %}

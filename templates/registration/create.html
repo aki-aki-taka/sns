@@ -1,0 +1,16 @@
+{% extends 'base/top.html' %}
+{% load static %}
+{% block content %}
+<div>
+      <div class="header"><h3>ユーザー登録</h3></div>
+        <div class="mb-3">
+            <div class="content">
+                <form class="ui form" action="" method="POST">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button class="btn btn-primary" name="next" value="confirm" type="submit">確認</button>
+                </form>
+            </div>
+        </div>
+</div>
+{% endblock %}

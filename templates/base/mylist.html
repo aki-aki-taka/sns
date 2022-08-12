@@ -1,0 +1,24 @@
+{% extends 'base/top.html' %}
+{% load static %}
+
+...
+
+{% block content %}
+    <div class="header"><h3>Home</h3></div>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+ <div class="col">
+ {% for item in object_list %}
+ <div class="card mb-3">
+   <div class="card-body">
+   <h5 class="card-title">タイトル：<a href="{% url 'base:detail' item.pk %}">{{item.title}}</a></h5>
+   <p class=card-text>カテゴリー:{{item.category}}</p>
+    <p class=card-text>投稿者：{{item.user.username}}</p>
+      </div>
+       {% if object.user == request.user %}　
+      <a href="{% url 'base:delete' pk %}" class="btn btn-danger ms-3" tabindex="-1" role="button" aria-disabled="true">削除</a>
+      {% endif %}
+      </div>
+   {% endfor %}
+</div>
+</div>
+{% endblock content %}
