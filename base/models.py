@@ -13,7 +13,6 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField(max_length=2000)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='media/', blank=True, null=True)
     category = models.ForeignKey(
                     Category, verbose_name='カテゴリー',
                     on_delete=models.PROTECT
