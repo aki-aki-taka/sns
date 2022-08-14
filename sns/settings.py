@@ -84,13 +84,14 @@ WSGI_APPLICATION = 'sns.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'name',
+        'NAME': 'sample_db',
         'USER': 'user',
         'PASSWORD': '',
         'HOST': 'host',
         'PORT': '',
     }
 }
+
 
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
