@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 django = "==4.1"
+dj-database-url = "*"
+django-heroku = "*"
 
 [dev-packages]
 
