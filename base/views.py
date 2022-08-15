@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.views import View
-from .models import Post
+from .models import Post, Category, Connection
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView
 from django.views.generic import DetailView
@@ -11,9 +11,8 @@ from django.views.generic import UpdateView
 from django.views.generic import DeleteView
 from django.urls import reverse_lazy
 from django.views import generic
-
-
-from .models import Post, Category, Connection
+from django.views.decorators.csrf import requires_csrf_token
+from django.http import HttpResponseServerError
 
 
 class TopView(TemplateView):
@@ -186,3 +185,10 @@ class FollowList(LoginRequiredMixin, ListView):
         # コンテクストに追加
         context['connection'] = Connection.objects.get_or_create(user=self.request.user)
         return context
+
+
+def my_customized_server_error(request, template_name='500.html'):
+    import sys
+    from django.views import debug
+    error_html = debug.technical_500_response(request, *sys.exc_info()).content
+    return HttpResponseServerError(error_html)

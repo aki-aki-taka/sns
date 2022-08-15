@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import Home, MyPost, DetailPost, CreatePost, UpdatePost, DeletePost, FollowHome, FollowDetail, FollowList
 from . import views
+from base import views
 
 app_name = 'base'
 
@@ -17,3 +18,6 @@ urlpatterns = [
     path('follow-detail/<int:pk>', FollowDetail.as_view(), name='follow-detail'),
     path('follow-list/', FollowList.as_view(), name='follow-list'),
 ]
+
+
+handler500 = views.my_customized_server_error
