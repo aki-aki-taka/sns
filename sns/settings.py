@@ -84,10 +84,10 @@ WSGI_APPLICATION = 'sns.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sample_db',
-        'USER': 'user',
+        'NAME': '',
+        'USER': '',
         'PASSWORD': '',
-        'HOST': 'host',
+        'HOST': '',
         'PORT': '',
     }
 }
